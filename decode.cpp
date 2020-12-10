@@ -16,16 +16,8 @@ int frequency(std::string str, char letter){
 }
 
 //finds length of string
-double length(std::string str){
-    int length = 0;
-    for(int i = 0; i < str.length(); i++){
-        if(isalpha(str[i])){
-            length++;
-        }
-    }
-    //std::cout << length << std::endl;
-    return length;
-}
+//get rid of this entire function because if you have a string hello-world later you will only work with hello-worl
+
 
 std::string decode(std::string str){
     //a-z all lowercase
@@ -43,17 +35,16 @@ std::string decode(std::string str){
     ////i was so confused for this part so I looked at
     //@ccheung's code and still am kekw
     for(int i = 0; i < 26; i++){
-        freq[i] = frequency(str, letter[i])/26;//length(str);
+        freq[i] = frequency(str, letter[i])/26;//length(str); //I'm not sure but this might be / 100 instead of / 26 to get the same freq as the arr above
         //std::cout << freq[i] <<std::endl;
     }
     
-     for(int i = 0; i < 26; i++){
+    //before this would loop 26 times before you set sum to 0 
         for(int j = 0; j < 26; j++){
-            sum += sqrt(pow(freq[j], 2) + pow(engFreq[j], 2));
-        }
+            sum += sqrt(pow(freq[j], 2) + pow(engFreq[j], 2)); 
             distance[i] = sum;
             sum = 0;
-            str = encryptCaesar(str, 1);
+            str = encryptCaesar(str, j);
             std::cout << str << std::endl;
      }
 
